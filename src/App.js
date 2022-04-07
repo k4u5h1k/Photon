@@ -1,24 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Upload from './components/Upload';
+import { Link } from "react-router-dom";
+import { styled } from '@mui/material/styles';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <Box sx={{
+            marginTop: '30vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+      }}>
+        <Typography 
+          component="h1" 
+          variant="h1"
+          style={{
+            marginBottom: '5vh',
+            color: '#750808',
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          PHOTON
+        </Typography>
+        <Box sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '10px'
+        }}>
+          <Upload />
+          <Button
+            component={Link}
+            to="/receive"
+            variant="contained"
+            size="large"
+            style={{
+              backgroundColor: "#750808",
+            }}
+          >
+            Receive File
+          </Button>
+        </Box>
+      </Box>
+    </>
   );
 }
 
