@@ -27,29 +27,44 @@ const LoginTextField = styled(TextField)({
 });
 
 function Receive() {
-  // const [selectedFile, setSelectedFile] = useState(null);
   const [code, setCode] = useState("")
-  const [file, setFile] = useState(null)
   const history = useNavigate();
 
-  var handleChange = (evt) => {
-      setCode(evt.target.value)
-  }
+
+  // useEffect(function(){
+  //   const [state, isConnected, error] = useReceivePeerState(code);
+  //   console.log(state);
+  // },[code])
+
+  // var handleChange = (evt) => {
+  //     setCode(evt.target.value)
+  // }
 
   var checkEnter = (evt) => {
       if (evt.key === 'Enter'){
         evt.preventDefault()
-        fetch('http://172.17.122.174:5000/recieve?' + new URLSearchParams({
-              code: code,
-        })).then(response => response.blob())
-        .then(blob => {
-          var file = window.URL.createObjectURL(blob);
-          window.location.assign(file);
-        });
+        setCode(evt.target.value)
+
+        history("/download",
+            {
+              state: {
+                  code:evt.target.value
+              }
+            }
+        );
+
+        // fetch('http://172.17.122.174:5000/recieve?' + new URLSearchParams({
+        //       code: code,
+        // })).then(response => response.blob())
+        // .then(blob => {
+        //   var file = window.URL.createObjectURL(blob);
+        //   window.location.assign(file);
+        // });
       }
   }
 
   return (
+    <>
     <Box sx={{
           marginTop: '30vh',
           display: 'flex',
@@ -74,9 +89,9 @@ function Receive() {
         id="code"
         style={{width: '40%'}}
         onKeyUp={checkEnter}
-        onChange={handleChange}
       />
     </Box>
+    </>
   )
 }
 

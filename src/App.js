@@ -7,6 +7,18 @@ import { Link } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 
 function App() {
+
+  function makeid(length) {
+      var result           = '';
+      var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var charactersLength = characters.length;
+      for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * 
+   charactersLength));
+     }
+     return result;
+  }
+
   return (
     <>
       <Box sx={{
@@ -30,7 +42,7 @@ function App() {
               flexDirection: 'row',
               gap: '10px'
         }}>
-          <Upload />
+          <Upload id={makeid(6)}/>
           <Button
             component={Link}
             to="/receive"

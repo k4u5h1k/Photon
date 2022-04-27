@@ -8,23 +8,8 @@ import {useLocation} from 'react-router-dom';
 
 function Code() {
   const location = useLocation();
-  const [code, setCode] = useState(null);
   const file = location.state.file
-
-  useEffect( () => {
-    var data = new FormData()
-    data.append('file', file)
-    data.append('user', 'cosec')
-
-    fetch('http://127.0.0.1:8081/upload', {
-      method: 'POST',
-      body: data
-    }).then( 
-      response => response.json() 
-    ).then(
-      success => setCode(success['code'])
-    )
-  }, [])
+  const id = location.state.id
 
   return (
     <>
@@ -52,7 +37,7 @@ function Code() {
             color: '#750808',
           }}
         >
-          Your Code is: {code}
+          Your Code is: {id}
         </Typography>
       </Box>
     </>
